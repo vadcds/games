@@ -232,7 +232,87 @@
 		</div>
 	</section>
 	<!-- Footer top section end -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Section</title>
+    <style>
+        /* Add your styles here */
+        #comments-container {
+            max-width: 600px;
+            margin: auto;
+        }
 
+        .comment {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="comments-container">
+        <!-- Comments will be displayed here -->
+    </div>
+
+    <form id="comment-form">
+        <label for="comment">Add a comment:</label>
+        <textarea id="comment" name="comment" required></textarea>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch and display comments on page load
+            fetchComments();
+
+            // Handle form submission
+            document.getElementById('comment-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                // Get the comment from the textarea
+                const commentText = document.getElementById('comment').value;
+
+                // Add your logic to save the comment to the server here
+                // For simplicity, we are just displaying it on the client side
+                displayComment({ text: commentText, user: "You" });
+
+                // Clear the textarea
+                document.getElementById('comment').value = "";
+            });
+        });
+
+        // Function to fetch comments from the server
+        function fetchComments() {
+            // Simulate fetching comments from the server
+            const comments = [
+                { text: "This is a comment from another user.", user: "OtherUser" },
+                { text: "This is a comment from you.", user: "You" },
+                // Add more comments as needed
+            ];
+
+            // Display comments on the page
+            comments.forEach(comment => displayComment(comment));
+        }
+
+        // Function to display a comment on the page
+        function displayComment(comment) {
+            const commentsContainer = document.getElementById('comments-container');
+
+            // Create a comment element
+            const commentElement = document.createElement('div');
+            commentElement.classList.add('comment');
+            commentElement.innerHTML = `<strong>${comment.user}:</strong> ${comment.text}`;
+
+            // Append the comment to the container
+            commentsContainer.appendChild(commentElement);
+        }
+    </script>
+</body>
+</html>
 	
 	<!-- Footer section -->
 	<footer class="footer-section">
